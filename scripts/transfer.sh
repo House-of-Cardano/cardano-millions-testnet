@@ -23,20 +23,20 @@ cardano-cli transaction build \
 --tx-in-collateral $2 \
 --tx-out "$scriptAddr+$output+$tokenamount $policyid.$tokenname" \
 --tx-out-datum-hash $scriptdatumhash \
---protocol-params-file protocol.json \
---out-file tx-script.build
+--protocol-params-file ./blockchain/protocol.json \
+--out-file ./blockchain/tx-script.build
 
 # ------------ Sign the transaction -------------------------
 
 cardano-cli transaction sign \
---tx-body-file tx-script.build \
---signing-key-file ../../../addresses/payment1.skey  \
+--tx-body-file ./blockchain/tx-script.build \
+--signing-key-file ../addresses/payment1.skey  \
 --$testnet \
---out-file tx-script.signed
+--out-file ./blockchain/tx-script.signed
 
 # ------------ Submit the transaction -------------------------
 
-cardano-cli transaction submit --$testnet --tx-file tx-script.signed
+cardano-cli transaction submit --$testnet --tx-file ./blockchain/tx-script.signed
 
 echo "Querying wallet address..."
 

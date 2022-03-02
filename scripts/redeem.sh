@@ -15,7 +15,7 @@ cardano-cli transaction build \
 --alonzo-era \
 --$testnet \
 --tx-in $1 \
---tx-in-script-file ~/smart-contract-tests/github-tests/martify.contracts-2/market.plutus \
+--tx-in-script-file ./plutus-scripts/validate-payment.plutus \
 --tx-in-datum-value $3 \
 --tx-in-redeemer-file unit.json \
 --tx-in $2 \
@@ -23,16 +23,16 @@ cardano-cli transaction build \
 --tx-out "$scriptAddr + 3000000 + $balanceTokens $policyid.$tokenname" \
 --tx-out-datum-hash $scriptdatumhash \
 --change-address $address3 \
---protocol-params-file protocol.json \
---out-file test-asset.tx
+--protocol-params-file ./blockchain/protocol.json \
+--out-file ./blockchain/test-asset.tx
 
 cardano-cli transaction sign \
---tx-body-file test-asset.tx \
---signing-key-file ../../../addresses/payment2.skey \
+--tx-body-file ./blockchain/test-asset.tx \
+--signing-key-file ../addresses/payment2.skey \
 --$testnet \
---out-file test-asset.signed
+--out-file ./blockchain/test-asset.signed
 
-cardano-cli transaction submit --$testnet --tx-file test-asset.signed
+cardano-cli transaction submit --$testnet --tx-file ./blockchain/test-asset.signed
 
 echo "Done"
 

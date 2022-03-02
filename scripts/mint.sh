@@ -7,31 +7,31 @@ tokenname="434d4c6f74746f546f6b656e"
 tokenamount="1"
 output="2000000"
 
-mkdir policy
+mkdir -p ./blockchain/policy
 
 # Generate key pairs ->
 
 cardano-cli address key-gen \
-    --verification-key-file policy/policy.vkey \
-    --signing-key-file policy/policy.skey
+    --verification-key-file ./blockchain/policy/policy.vkey \
+    --signing-key-file ./blockchain/policy/policy.skey
     
 # Create a policy.script file and fill it with an empty string ->
 
-touch policy/policy.script && echo "" > policy/policy.script
+touch ./blockchain/policy/policy.script && echo "" > ./blockchain/policy/policy.script
 
 # Use the echo command to populate the file ->
 
-echo "{" >> policy/policy.script 
-echo "  \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file policy/policy.vkey)\"," >> policy/policy.script 
-echo "  \"type\": \"sig\"" >> policy/policy.script 
-echo "}" >> policy/policy.script
+echo "{" >> ./blockchain/policy/policy.script 
+echo "  \"keyHash\": \"$(cardano-cli address key-hash --payment-verification-key-file ./blockchain/policy/policy.vkey)\"," >> ./blockchain/policy/policy.script 
+echo "  \"type\": \"sig\"" >> ./blockchain/policy/policy.script 
+echo "}" >> ./blockchain/policy/policy.script
 
 echo "Create policy ID..."
 
-cardano-cli transaction policyid --script-file ./policy/policy.script >> policy/policyID
+cardano-cli transaction policyid --script-file ./blockchain/policy/policy.script >> ./blockchain/policy/policyID
 
-policyid=$(cat policy/policyID)
-scriptAddr=$(cat script.addr)
+policyid=$(cat ./blockchain/policy/policyID)
+scriptAddr=$(cat ./blockchain/script.addr)
 
 echo "Build and submit the minting transaction to wallet `address2`..."
 
@@ -43,18 +43,18 @@ cardano-cli transaction build \
 --tx-out "$address2+$output+$tokenamount $policyid.$tokenname" \
 --change-address $address2 \
 --mint="$tokenamount $policyid.$tokenname" \
---minting-script-file policy/policy.script \
---protocol-params-file protocol.json \
---out-file mint_tx.raw
+--minting-script-file ./blockchain/policy/policy.script \
+--protocol-params-file ./blockchain/protocol.json \
+--out-file ./blockchain/mint_tx.raw
  
 cardano-cli transaction sign  \
---tx-body-file mint_tx.raw \
---signing-key-file ../../../addresses/payment1.skey  \
---signing-key-file policy/policy.skey  \
+--tx-body-file ./blockchain/mint_tx.raw \
+--signing-key-file ../addresses/payment1.skey  \
+--signing-key-file ./blockchain/policy/policy.skey  \
 --$testnet  \
---out-file mint_tx.signed 
+--out-file ./blockchain/mint_tx.signed 
 
-cardano-cli transaction submit --$testnet --tx-file mint_tx.signed
+cardano-cli transaction submit --$testnet --tx-file ./blockchain/mint_tx.signed
 
 echo "Done"
 

@@ -1,15 +1,15 @@
 #!/bin/bash
 
-rm -rf policy/
-rm *.raw *.signed *.addr *.build
+rm -rf ./blockchain/policy/
+rm ./blockchain/*.raw ./blockchain/*.signed ./blockchain/*.addr ./blockchain/*.build
 
 # ------------ Set-up enrivonment variables -------------------------
 
 echo "Preparing environment variables..."
 
 testnet='testnet-magic 1097911063'
-address2="$(cat ../../../addresses/address1.addr)"
-address3="$(cat ../../../addresses/address2.addr)"
+address2="$(cat ../addresses/address1.addr)"
+address3="$(cat ../addresses/address2.addr)"
 
 echo "Done"
 
@@ -17,10 +17,8 @@ echo "Done"
 
 echo "Compiling smart contracts..."
 
-cd ../
 cabal build
-cabal run market-plutus
-cd token-example 
+cabal run validate-payment-plutus 
 
 echo "Done"
 
@@ -29,9 +27,9 @@ echo "Done"
 echo "Building script address..."
 
 cardano-cli address build \
---payment-script-file ../validate-payment.plutus \
+--payment-script-file ./plutus-scripts/validate-payment.plutus \
 --$testnet \
---out-file script.addr
+--out-file ./blockchain/script.addr
 
 echo "Done"
 
@@ -39,7 +37,7 @@ echo "Done"
 
 echo "Querying network parameters..."
 
-cardano-cli query protocol-parameters --$testnet --out-file protocol.json
+cardano-cli query protocol-parameters --$testnet --out-file ./blockchain/protocol.json
 
 echo "Done"
 
@@ -50,7 +48,7 @@ echo
 cardano-cli query utxo --address $address2 --$testnet
 echo
 
-scriptAddr="$(cat script.addr)"
+scriptAddr="$(cat ./blockchain/script.addr)"
 
 echo "scriptAddr -> "
 echo
