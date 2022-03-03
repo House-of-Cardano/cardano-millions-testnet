@@ -13,6 +13,9 @@ address3="$(cat ../addresses/address2.addr)"
 player1="$(cat ../addresses/player-1-wallet.addr)"
 bank="$(cat ../addresses/bank.addr)"
 cagnotte="$(cat ../addresses/cagnotte.addr)"
+charity="$(cat ../addresses/charity.addr)"
+winner="$(cat ../addresses/winner.addr)"
+
 
 echo "Done"
 
