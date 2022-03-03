@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # arguments:
-# utxo containing the Cardano Millions Tokens
+# 1:- utxo containing the Cardano Millions Tokens
+# 2:- utxo for funding the transactions and collateral
 
 # ------------ Send the Cardano Millions TOkens to the script address -------------------------
 
@@ -17,7 +18,7 @@ echo $scriptdatumhash
 cardano-cli transaction build \
 --alonzo-era \
 --$testnet \
---change-address $address2 \
+--change-address $bank \
 --tx-in $1 \
 --tx-in $2 \
 --tx-in-collateral $2 \
@@ -30,7 +31,7 @@ cardano-cli transaction build \
 
 cardano-cli transaction sign \
 --tx-body-file ./blockchain/tx-script.build \
---signing-key-file ../addresses/payment1.skey  \
+--signing-key-file ../addresses/bank.skey  \
 --$testnet \
 --out-file ./blockchain/tx-script.signed
 

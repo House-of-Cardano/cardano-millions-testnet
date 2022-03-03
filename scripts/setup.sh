@@ -10,6 +10,9 @@ echo "Preparing environment variables..."
 testnet='testnet-magic 1097911063'
 address2="$(cat ../addresses/address1.addr)"
 address3="$(cat ../addresses/address2.addr)"
+player1="$(cat ../addresses/player-1-wallet.addr)"
+bank="$(cat ../addresses/bank.addr)"
+cagnotte="$(cat ../addresses/cagnotte.addr)"
 
 echo "Done"
 
@@ -45,7 +48,7 @@ echo "Querying wallet address..."
 
 echo "address2 -> "
 echo
-cardano-cli query utxo --address $address2 --$testnet
+cardano-cli query utxo --address $bank --$testnet
 echo
 
 scriptAddr="$(cat ./blockchain/script.addr)"

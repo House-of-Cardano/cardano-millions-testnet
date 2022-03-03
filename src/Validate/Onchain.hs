@@ -77,11 +77,11 @@ import Data.ByteString.Builder (byteString)
 import PSGenerator.Common (integerBridge)
 
 minLovelace :: Integer
-minLovelace = 3000000
+minLovelace = 4000000
 
 {-# INLINABLE mkBuyValidator #-}
 mkBuyValidator :: Integer -> () -> ScriptContext -> Bool
-mkBuyValidator d () ctx = d == 1970 && outputHasValue
+mkBuyValidator d () ctx = whatDatum
   where
     info :: TxInfo
     info = scriptContextTxInfo ctx
@@ -94,6 +94,7 @@ mkBuyValidator d () ctx = d == 1970 && outputHasValue
     valueAmount :: Ledger.Value
     valueAmount = txOutValue ownOutput
     
+    -- flattenValue -> flattens the map of maps into a flat list of triples
     flatten ::  [(CurrencySymbol, TokenName, Integer)]
     flatten = ADA.flattenValue valueAmount 
 
@@ -102,7 +103,13 @@ mkBuyValidator d () ctx = d == 1970 && outputHasValue
      
     outputHasValue :: Bool
     outputHasValue = traceIfFalse "Incorrect payment amount" $ outValue flatten == minLovelace
-    
+
+    whatDatum :: Bool
+    whatDatum = 
+        if d == 1970
+            then outputHasValue
+        else True
+
 data Typed
 instance Scripts.ValidatorTypes Typed where
     type instance DatumType Typed    = Integer

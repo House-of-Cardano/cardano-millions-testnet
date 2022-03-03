@@ -40,8 +40,8 @@ cardano-cli transaction build \
 --$testnet \
 --tx-in $1 \
 --tx-in-collateral $1 \
---tx-out "$address2+$output+$tokenamount $policyid.$tokenname" \
---change-address $address2 \
+--tx-out "$bank+$output+$tokenamount $policyid.$tokenname" \
+--change-address $bank \
 --mint="$tokenamount $policyid.$tokenname" \
 --minting-script-file ./blockchain/policy/policy.script \
 --protocol-params-file ./blockchain/protocol.json \
@@ -49,7 +49,7 @@ cardano-cli transaction build \
  
 cardano-cli transaction sign  \
 --tx-body-file ./blockchain/mint_tx.raw \
---signing-key-file ../addresses/payment1.skey  \
+--signing-key-file ../addresses/bank.skey  \
 --signing-key-file ./blockchain/policy/policy.skey  \
 --$testnet  \
 --out-file ./blockchain/mint_tx.signed 
@@ -62,5 +62,5 @@ echo "Querying wallet address..."
 
 echo "address2 -> "
 echo
-cardano-cli query utxo --address $address2 --$testnet
-echo "cardano-cli query utxo --address $address2 --$testnet"
+cardano-cli query utxo --address $bank --$testnet
+echo "cardano-cli query utxo --address $bank --$testnet"
