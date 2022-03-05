@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/github/license/house-of-cardano/cardano-millions-testnet)](https://github.com/House-of-Cardano/cardano-millions-testnet)
+
 # cardano-millions-testnet
 Testing scripts for a cardano lottery. Powered by Plutus smart contracts on the Cardano blockchain (testnet)
 
@@ -14,7 +16,7 @@ Testing scripts for a cardano lottery. Powered by Plutus smart contracts on the 
 &nbsp;
 ## Introduction
 
-This repo details the code base for the << Cardano Millions >> lottery, a simple lotto game running on the **Cardano blockchain** and running **Plutus Smart Contracts**. The code detailed here runs on the Cardano testnet and uses test ADA (tADA) as its currency.
+This repo details the code base for the :raised_hands: Cardano Millions :raised_hands: lottery, a simple lotto game running on the **Cardano blockchain** and running **Plutus Smart Contracts**. The code detailed here runs on the Cardano testnet and uses test ADA (tADA) as its currency.
 
 The game can be played from the [HouseOfCardano](https://house-of-cardano.io/cardano-millions) website which will also supprt a mainnet version of this game in the future.
 
