@@ -24,7 +24,7 @@ The game can be played from the [HouseOfCardano](https://house-of-cardano.io/car
 
 #Peace #Love and #Cardano #forall
 
-To set-up your own version of Cardano Millions, follow the instructions below. Happy coding :sunglasses:
+To set-up your own version of Cardano Millions, follow the instructions below. Please feel free to reach out to me [hoc@house-of-cardano.io](mailto:hoc@house-of-cardano.io) Happy coding :sunglasses:
 
 Consider donating -> 
 
