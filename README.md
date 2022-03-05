@@ -1,5 +1,7 @@
 [![License](https://img.shields.io/github/license/house-of-cardano/cardano-millions-testnet)](https://github.com/House-of-Cardano/cardano-millions-testnet)
-[![License](https://img.shields.io/badge/Cardano-ADA-informational)](https://github.com/House-of-Cardano/cardano-millions-testnet)
+[![ADA](https://img.shields.io/badge/Cardano-ADA-informational)](https://github.com/House-of-Cardano/cardano-millions-testnet)
+[![Plutus](https://img.shields.io/badge/Cardano-Plutus-yellow)](https://github.com/House-of-Cardano/cardano-millions-testnet)
+
 
 # cardano-millions-testnet
 Testing scripts for a cardano lottery. Powered by Plutus smart contracts on the Cardano blockchain (testnet)
