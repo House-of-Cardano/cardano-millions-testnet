@@ -119,7 +119,7 @@ Code snippet
  
 ## To Do
 
-- [ ] Item One
+- [ ] Fix internal anchor points
 - [ ] Item Two
 - :white_check_mark: Item Three
 - :white_large_sqaure: Item Four
