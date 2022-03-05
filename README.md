@@ -17,34 +17,39 @@ Testing scripts for a cardano lottery. Powered by Plutus smart contracts on the 
 
 This repo details the code base for the << Cardano Millions >> lottery, a simple lotto game running on the **Cardano blockchain** and running **Plutus Smart Contracts**. The code detailed here runs on the Cardano testnet and uses test ADA (tADA) as its currency.
 
-The game can be played from the <a href="https://house-of-cardano.io/cardano-millions" target="_blank">HouseOfCardano</a> website which will also supprt a mainnet version of this game in the future.
+The game can be played from the [HouseOfCardano](https://house-of-cardano.io/cardano-millions) website which will also supprt a mainnet version of this game in the future.
+
+**10% of all money collected at each iteration of the lottery will go to charities that support children #Peace #Love #Cardano #forall**
 
 To set-up your own version of Cardano Millions, follow the instructions below. Happy coding :sunglasses:
 
 ## How to play the Cardano-Millions lottery
+WORK IN PROGRESS
 &nbsp;
 
 ## How the Cardano-Millions lottery works
+WORK IN PROGRESS
 &nbsp;
 ### Wait, I need to pay how much?
+You'll see - but it won't be expensive and it will be fun and part of the proceeds will always go to charity
 &nbsp;
 
-### Info to include in this section? Proposal for notes ->
+<!-- ### Info to include in this section? Proposal for notes ->
 
 - The absolute amount, as of March 4, 2022, is 1,725,000 lovelace or 1.725 ADA
 - It will not be possible to syphone game fees in real time as the minimum amount for a valid transaction is 1 ADA, but 5% (for example) of a ticket price of 4 ADA is 0.2 ADA, so any transaction with a 5% game fee does not get validated. A news process will have to be made in which the script address is periodically queried, and especially before the end of the lotto, to mass transfer ADA accumulated at the script address to the bank (for game fees), to charity and to cagnotte
 - Game fees cannot be syphoned in real time as the fee is below the minimum amount required to validate a transaction.  This means that the game fee will have to be transferred to bank en masse and periodically. This will require periodic querying of the script address
         - Through cardano-db-sync?
-        - Through cardano-cli? 
+        - Through cardano-cli?  -->
 
 ## Run the code
-&nbsp;
+
 ### Set-up a cardano-node
-Building, synchronising and running the cardano-node is a very straightforward process, thanks entirely to the hugely awesome :heart_eyes: instructions that the great people at <a href="https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#14-configure-your-topology-files" target="_blank">CoinCashew</a>. Follow this guide, it **will** change your life.
+Building, synchronising and running the cardano-node is a very straightforward process, thanks entirely to the hugely awesome :heart_eyes: instructions that the great people at [CoinCashew](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#14-configure-your-topology-files). Follow this guide, it **will** change your life.
 
 The only items to watch our for in these instructions are:
 
-- Make sure you are installing and building the latest version of cardano-node. The latest releases can be found <a href="https://github.com/input-output-hk/cardano-node" target="_blank">here</a>, on the right under "Releases". The latest cardano-node version at time of writing is 1.34.0
+- Make sure you are installing and building the latest version of cardano-node. The latest releases can be found [here](https://github.com/input-output-hk/cardano-node), on the right under "Releases". The latest cardano-node version at time of writing is 1.34.0
 - Make sure that you change `mainnet` to `testnet`
 
 I believe that by following these instructions, you will automatically build the most recent release, but its always worth checking. As part the installation process you will have the opportunity to check the version that you have installed.
@@ -57,17 +62,22 @@ And another **GREAT** feature of these instructions is that you will also downlo
 - libsodium (for encryption purposes I believe)
 - cabal and ghc (the Glasgow Haskell Complier) -> I am so thankful for this :pray: (and you will be too :blush:)
 
-From time to time, the engineers working on the Cardano blockchain make new releases. I believe it is important to keep you nodes updated. To update your cardano-node to the latest release, follow the instructions below (copied from <a href="https://forum.cardano.org/t/update-cardano-node-to-1-30-1-for-coincashew-users/77213" target="_blank">here</a>)
+From time to time, the engineers working on the Cardano blockchain make new releases. I believe it is important to keep you nodes updated. To update your cardano-node to the latest release, follow the instructions below (copied from [here](https://forum.cardano.org/t/update-cardano-node-to-1-30-1-for-coincashew-users/77213))
 
-`sudo apt-get update && sudo apt-get upgrade -y`
+```markdown
+sudo apt-get update && sudo apt-get upgrade -y
+```
 ```markdown
 cd $HOME/git
 git clone https://github.com/input-output-hk/cardano-node.git cardano-node2
 cd cardano-node2/
 git fetch --all --recurse-submodules --tags`
 ```
-`git checkout tags/1.34.0` **Find the latest release from <a href="https://github.com/input-output-hk/cardano-node" target="_blank">here</a>**
 
+**Find the latest release from [here](https://github.com/input-output-hk/cardano-node)**
+```markdown
+git checkout tags/1.34.0
+```
 ```markdown
 ghcup upgrade
 ghcup install ghc 8.10.4
@@ -88,7 +98,9 @@ cabal build cardano-node cardano-cli
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") version
 $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-node") version
 ```
-`sudo systemctl stop cardano-node`
+```markdown
+sudo systemctl stop cardano-node
+```
 
 ```markdown
 sudo cp $(find $HOME/git/cardano-node2/dist-newstyle/build -type f -name "cardano-cli") /usr/local/bin/cardano-cli
@@ -100,7 +112,9 @@ cardano-node version
 cardano-cli version
 ```
 
-`sudo systemctl start cardano-node`
+```markdown
+sudo systemctl start cardano-node
+```
 
 ```markdown
 cd $HOME/git/
@@ -109,7 +123,7 @@ mv cardano-node cardano-node-old
 mv cardano-node2 cardano-node
 ```
 
-A ton of useful and great information on Cardano items, issues, troubleshooting and be found at the <a href="https://forum.cardano.org/" target="_blank">Cardano Forum</a> and at the <a href="https://cardano.stackexchange.com/" target="_blank">Cardano Stack Exchange</a>
+A ton of useful and great information on Cardano items, issues, troubleshooting and be found at the [Cardano Forum](https://forum.cardano.org/) and at the [Cardano Stack Exchange](https://cardano.stackexchange.com/)
 
 &nbsp;
 ### Install and run a cardano-db-sync to query the blockchain
@@ -130,7 +144,9 @@ Installing and running the cardano-db-sync is not at all obvious. I had it worki
 
 To set-up the database, I followed the instructions using cabal (installed during node setup). After cloning the cardano-db-sync repo (from https://github.com/input-output-hk/cardano-db-sync), go to the instructions at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/building-running.md and scroll down to the section "Set up and run the db-sync node". After "cd'ing" into the cloned repo, checkout the latest release using the command
 
-`git checkout <latest-official-tag> -b tag-<latest-official-tag>`
+```markdown
+git checkout <latest-official-tag> -b tag-<latest-official-tag>
+```
 
 I was using the `12.0.2` release, so used `git checkout 12.0.2 -b tag-12.0.2`
 
