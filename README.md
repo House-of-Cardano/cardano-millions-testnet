@@ -13,13 +13,12 @@ Testing scripts for a cardano lottery. Powered by Plutus smart contracts on the 
 
 &nbsp;
 ## Introduction
-&nbsp;
 
 This repo details the code base for the << Cardano Millions >> lottery, a simple lotto game running on the **Cardano blockchain** and running **Plutus Smart Contracts**. The code detailed here runs on the Cardano testnet and uses test ADA (tADA) as its currency.
 
 The game can be played from the [HouseOfCardano](https://house-of-cardano.io/cardano-millions) website which will also supprt a mainnet version of this game in the future.
 
-**10% of all money collected at each iteration of the lottery will go to charities that support children #Peace #Love #Cardano #forall**
+**10% of all money collected at each iteration of the lottery will go to charities that support children #Peace #Love and #Cardano #forall**
 
 To set-up your own version of Cardano Millions, follow the instructions below. Happy coding :sunglasses:
 
@@ -45,7 +44,7 @@ You'll see - but it won't be expensive and it will be fun and part of the procee
 ## Run the code
 
 ### Set-up a cardano-node
-Building, synchronising and running the cardano-node is a very straightforward process, thanks entirely to the hugely awesome :heart_eyes: instructions that the great people at [CoinCashew](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#14-configure-your-topology-files). Follow this guide, it **will** change your life.
+Building, synchronising and running the cardano-node is a very straightforward process, thanks entirely to the hugely awesome :heart_eyes: instructions that the great people at [CoinCashew](https://www.coincashew.com/coins/overview-ada/guide-how-to-build-a-haskell-stakepool-node#14-configure-your-topology-files) have provided to us mere mortals. Follow this guide, it **will** change your life.
 
 The only items to watch our for in these instructions are:
 
@@ -180,11 +179,12 @@ The `testnet-config.json` file is one of the files that are created when you bui
 
 Fixing this line in the `config/testnet-config.yaml` file and running the `PGPASSFILE....` command again started the synchronisation of cardano-db-sync to the testnet cardano node.
 
-I ran this synchronising process detached in a tmux session. To fully synchronise the db to the node too approximately 08:51 **XXX NEED TO COMPLETE XXX**
+I ran this synchronising process detached in a tmux session. To fully synchronise the db to the node took approximately 08:51 **XXX NEED TO COMPLETE XXX**
 
 Once up and running, there are a number of "ready made" queries that you can run, which can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/interesting-queries.md, and details on the various tables can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/schema.md
 
-I believe that it is also possible to use graphql or Blockfrost (https://blockfrost.io) with cardano-db-synch, but I have not yet investigated this (info for graphql can be found at https://github.com/AskBid/cardano-notes/wiki/cardano-db-sync%2C-cardano-node%2C-cardano-graph-ql).
+I believe that it is also possible to use graphql or [Blockfrost](https://blockfrost.io) with cardano-db-synch, but I have not yet investigated this (info for using graphql with the Cardano blockchain can be found [here](https://github.com/AskBid/cardano-notes/wiki/cardano-db-sync%2C-cardano-node%2C-cardano-graph-ql)).
+
 
 ### Install and run Cardano-Millions
 &nbsp;
@@ -192,8 +192,6 @@ WORK IN PROGRESS
 
 ## To Do
 
-- [ ] Fix internal anchor points
-- [ ] Test external links to open in a new page
 - [ ] Add-in badges
 - [ ] Description on how to install and run the cardano-millions repository
 <!-- - :heavy_check_mark: Item Four -->
