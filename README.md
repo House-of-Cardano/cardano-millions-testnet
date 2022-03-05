@@ -124,7 +124,6 @@ mv cardano-node2 cardano-node
 
 A ton of useful and great information on Cardano items, issues, troubleshooting and be found at the [Cardano Forum](https://forum.cardano.org/) and at the [Cardano Stack Exchange](https://cardano.stackexchange.com/)
 
-&nbsp;
 ### Install and run a cardano-db-sync to query the blockchain
 
 From https://github.com/input-output-hk/cardano-db-sync ->
@@ -141,50 +140,66 @@ Look up the amount of ADA delegated to each pool for any Shelley or later epoch.
 
 Installing and running the cardano-db-sync is not at all obvious. I had it working fine, but then, after some node updates, it was no longer connecting to the testnet. I found that following the instructions at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/building-running.md works fine. It is important to follow these instructions, and especially to checkout the latest release and not to build from main. Also, cardano-db-sync requires a running and synchronised cardano-node (see [Set-up a cardano-node](#set-up-a-cardano-node) for installation instructions for cardano-node).
 
-To set-up the database, I followed the instructions using cabal (installed during node setup). After cloning the cardano-db-sync repo (from https://github.com/input-output-hk/cardano-db-sync), go to the instructions at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/building-running.md and scroll down to the section "Set up and run the db-sync node". After "cd'ing" into the cloned repo, checkout the latest release using the command
+Instructions to install and run cardano-db-sync can be found [here](https://docs.cardano.org/explore-cardano/cardano-architecture/working-with-db-sync). Once postgres has been installed, start the service with `sudo service postgresql start` and then create a database named `testnet` from within the `cardano-db-sync` folder:
+
+```markdown
+sudo createdb -U root testnet
+```
+Check that the testnet database has been created by running
+
+```markdown
+sudo -u postgres psql
+\l
+```
+This database can subsequently be accessed by running `sudo -u postgres psql testnet`
+
+To build cardano-db-sync, I followed the instructions using nix. After cloning the cardano-db-sync repo (from https://github.com/input-output-hk/cardano-db-sync), go to the instructions at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/building-running.md and scroll down to the section "Set up and run the db-sync node // with nix". After "cd'ing" into the cloned repo, checkout the latest release using the command
 
 ```markdown
 git checkout <latest-official-tag> -b tag-<latest-official-tag>
 ```
 
-I was using the `12.0.2` release, so used `git checkout 12.0.2 -b tag-12.0.2`
+At the time of writing, the current release was `12.0.2`, so I used the command `git checkout 12.0.2 -b tag-12.0.2`
 
-Follow the instructions to build the node by running the command `cabal build cardano-db-sync`
+Build the node by running the command `nix-build -A cardano-db-sync -o db-sync-node`
 
-The build may take some time (for me, it took approximately 35 minutes). 
+Once the build is complete, make a copy the file `config/mainnet-config.yaml` to `config/testnet-config.yaml` and edit the following line in this file:
 
-Once the build is complete, run 
+`NodeConfigFile: ../../cardano-my-node/testnet-config.json`
+
+The `testnet-config.json` file is one of the files that are created when you build the cardano-node - so build and synchronise your cardano node (testnet) before setting up cardano-db-synch. The path for the `NodeConfigFile` is the path to the node config file, relative to the config file located in the `cardano-db-sync` folder. Once the file has been copied and modified, run:
 
 ```markdown
-PGPASSFILE=config/pgpass-testnet cabal run cardano-db-sync -- \
+PGPASSFILE=config/pgpass-testnet scripts/postgresql-setup.sh --createdb
+```
+
+and then
+
+```markdown
+PGPASSFILE=config/pgpass-testnet db-sync-node/bin/cardano-db-sync \
     --config config/testnet-config.yaml \
-    --socket-path /home/node/cardano-my-node/db/socket \
+    --socket-path ../cardano-my-node/db/socket \
     --state-dir ledger-state/testnet \
     --schema-dir schema/
 ```
 
-making sure that you replace `mainnet` with `testnet` and by replacing the `--socket-path` tag with the path to your cardano-node `node.socket` file.
+This last command will start the synchronisation between the cardano-node and cardano-db-sync. Before running the command, make sure that you replace `mainnet` with `testnet` and replace the `--socket-path` tag with the path to your cardano-node `node.socket` file in your cardano-node folder (my folder is called `cardano-my-node`).
 
-However, running `PGPASSFILE....` the first time gave the following error message:
+Once synchronisation has started, querying teh testnet database will show that the tables begin to get populated:
 
 ```markdown
-cardano-db-sync: FatalError {fatalErrorMessage = "Cannot find the DbSync configuration file at : config/testnet-config.yaml"}
+sudo -u postgres psql testnet
+\dt
 ```
 
-This is, I guess, because the repo is set-up to query mainnet. To fix this, I copied the file at `config/mainnet-config.yaml` to `config/testnet-config.yaml` and edited the following line in this file:
-
-`NodeConfigFile: ../../cardano-my-node/testnet-config.json`
-
-The `testnet-config.json` file is one of the files that are created when you build the cardano-node - so build and synchronise your cardano node (testnet) before setting up cardano-db-synch.
-
-Fixing this line in the `config/testnet-config.yaml` file and running the `PGPASSFILE....` command again started the synchronisation of cardano-db-sync to the testnet cardano node.
-
-I ran this synchronising process detached in a tmux session. To fully synchronise the db to the node took approximately 08:51 **XXX NEED TO COMPLETE XXX**
+I ran this second synchronising command detached, in a tmux session. To fully synchronise the db to the node took approximately 08:51 **XXX NEED TO COMPLETE XXX**
 
 Once up and running, there are a number of "ready made" queries that you can run, which can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/interesting-queries.md, and details on the various tables can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/schema.md
 
 I believe that it is also possible to use graphql or [Blockfrost](https://blockfrost.io) with cardano-db-synch, but I have not yet investigated this (info for using graphql with the Cardano blockchain can be found [here](https://github.com/AskBid/cardano-notes/wiki/cardano-db-sync%2C-cardano-node%2C-cardano-graph-ql)).
 
+### Install nix
+WORK IN PROGRESS
 
 ### Install and run Cardano-Millions
 &nbsp;
