@@ -24,7 +24,7 @@ The game can be played from the [HouseOfCardano](https://house-of-cardano.io/car
 
 #Peace #Love and #Cardano #forall
 
-To set-up your own version of Cardano Millions, follow the instructions below. Please feel free to reach out to me [hoc@house-of-cardano.io](mailto:hoc@house-of-cardano.io) Happy coding :sunglasses:
+To set-up your own version of Cardano Millions, follow the instructions below. Please feel free to reach out to me for any remarks at [hoc@house-of-cardano.io](mailto:hoc@house-of-cardano.io) Happy coding :sunglasses:
 
 Consider donating -> 
 
@@ -33,12 +33,11 @@ Consider staking on the HouseOfCardanoStakePool -> ticker [HOCSP]
 ## How to play the Cardano-Millions lottery
 WORK IN PROGRESS
 &nbsp;
-
-## How the Cardano-Millions lottery works
-WORK IN PROGRESS
-&nbsp;
 ### Wait, I need to pay how much?
 You'll see - but it won't be expensive and it will be fun and part of the proceeds will always go to charity
+&nbsp;
+## How the Cardano-Millions lottery works
+WORK IN PROGRESS
 &nbsp;
 
 <!-- ### Info to include in this section? Proposal for notes ->
@@ -148,7 +147,7 @@ Look up the amount of ADA delegated to each pool for any Shelley or later epoch.
 
 Installing and running the cardano-db-sync is not at all obvious. I had it working fine, but then, after some node updates, it was no longer connecting to the testnet. I found that following the instructions at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/building-running.md works fine. It is important to follow these instructions, and especially to checkout the latest release and not to build from main. Also, cardano-db-sync requires a running and synchronised cardano-node (see [Set-up a cardano-node](#set-up-a-cardano-node) for installation instructions for cardano-node).
 
-Instructions to install and run cardano-db-sync can be found [here](https://docs.cardano.org/explore-cardano/cardano-architecture/working-with-db-sync). Once postgres has been installed, start the service with `sudo service postgresql start` and then create a database named `testnet` from within the `cardano-db-sync` folder:
+Instructions to install and run cardano-db-sync can be found [here](https://docs.cardano.org/explore-cardano/cardano-architecture/working-with-db-sync). Once postgres has been installed, start the service with `sudo service postgresql start` and then create a database named `testnet` from within the `cardano-db-sync` folder by running:
 
 ```markdown
 sudo createdb -U root testnet
@@ -161,7 +160,7 @@ sudo -u postgres psql
 ```
 This database can subsequently be accessed by running `sudo -u postgres psql testnet`
 
-To build cardano-db-sync, I followed the instructions using nix. After cloning the cardano-db-sync repo (from https://github.com/input-output-hk/cardano-db-sync), go to the instructions at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/building-running.md and scroll down to the section "Set up and run the db-sync node // with nix". After "cd'ing" into the cloned repo, checkout the latest release using the command
+To build cardano-db-sync, I followed the instructions using nix. After cloning the cardano-db-sync repo (from https://github.com/input-output-hk/cardano-db-sync), go to the instructions at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/building-running.md and scroll down to the section "Set up and run the db-sync node // with nix". cd into the cloned repo, and checkout the latest release using the command
 
 ```markdown
 git checkout <latest-official-tag> -b tag-<latest-official-tag>
@@ -193,7 +192,7 @@ PGPASSFILE=config/pgpass-testnet db-sync-node/bin/cardano-db-sync \
 
 This last command will start the synchronisation between the cardano-node and cardano-db-sync. Before running the command, make sure that you replace `mainnet` with `testnet` and replace the `--socket-path` tag with the path to your cardano-node `node.socket` file in your cardano-node folder (my folder is called `cardano-my-node`).
 
-Once synchronisation has started, querying teh testnet database will show that the tables begin to get populated:
+Once synchronisation has started, querying the testnet database will show that the tables begin to get populated:
 
 ```markdown
 sudo -u postgres psql testnet
@@ -215,6 +214,6 @@ WORK IN PROGRESS
 
 ## To Do
 
-- [ ] Add-in badges
 - [ ] Description on how to install and run the cardano-millions repository
+- [ ] Description on how to install nix
 <!-- - :heavy_check_mark: Item Four -->
