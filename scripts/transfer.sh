@@ -6,14 +6,9 @@
 
 # ------------ Send the Cardano Millions TOkens to the script address -------------------------
 
-# ------------ Has the Datum -------------------------
-
-scriptdatumhash="$(cardano-cli transaction hash-script-data --script-data-value 1970)"
-echo $scriptdatumhash
-
 # ------------ Write the transaction using the script address -------------------------
 
-# First tx-in corresponds to the UTxO with the native asset, the second is for payments
+echo "Building transaction to transfer the CMT to the script address..."
 
 cardano-cli transaction build \
 --alonzo-era \
@@ -22,7 +17,7 @@ cardano-cli transaction build \
 --tx-in $1 \
 --tx-in $2 \
 --tx-in-collateral $2 \
---tx-out "$scriptAddr+$output+$tokenamount $policyid.$tokenname" \
+--tx-out "$scriptAddr+$minAdaAmount+$tokenamount $policyid.$tokenname" \
 --tx-out-datum-hash $scriptdatumhash \
 --protocol-params-file ./blockchain/protocol.json \
 --out-file ./blockchain/tx-script.build

@@ -1,30 +1,30 @@
 #!/bin/bash
 
 # arguments:
-# 1:- utxo containing the Cardano Millions Tokens
-# 2:- utxo for funding
+# 1:- utxo containing the funds locked at the scriptAddr
+# 2:- utxo for funding -> from bank
 
-echo "Building & submitting the transaction to transfer CMT to player..."
+echo "Building & submitting the transaction to send game fees to the bank..."
 
 cardano-cli transaction build \
 --alonzo-era \
 --$testnet \
 --tx-in $1 \
 --tx-in-script-file ./plutus-scripts/validate-payment.plutus \
---tx-in-datum-value 1970 \
+--tx-in-datum-value 2003 \
 --tx-in-redeemer-file ./scripts/unit.json \
 --tx-in $2 \
 --tx-in-collateral $2 \
---tx-out "$player1 + $minAdaAmount + 1 $policyid.$tokenname" \
---tx-out "$scriptAddr + $minLovelaceAmount" \
+--tx-out "$scriptAddr + $minLovelaceAmount-$gameFees" \
 --tx-out-datum-hash $scriptdatumhash2 \
---change-address $player1 \
+--tx-out "$bank + $gameFees" \
+--change-address $bank \
 --protocol-params-file ./blockchain/protocol.json \
 --out-file ./blockchain/test-asset.tx
 
 cardano-cli transaction sign \
 --tx-body-file ./blockchain/test-asset.tx \
---signing-key-file ../addresses/player-1-wallet.skey \
+--signing-key-file ../addresses/bank.skey \
 --$testnet \
 --out-file ./blockchain/test-asset.signed
 
