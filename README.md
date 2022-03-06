@@ -22,13 +22,13 @@ The game can be played from the [HouseOfCardano](https://house-of-cardano.io/car
 
 **10% of all money collected at each iteration of the lottery will go to charities that support children** 
 
-#Peace #Love and #Cardano #forall
+#Peace, #Love and #Cardano #forall :hearts:
 
 To set-up your own version of Cardano Millions, follow the instructions below. Please feel free to reach out to me for any remarks at [hoc@house-of-cardano.io](mailto:hoc@house-of-cardano.io) Happy coding :sunglasses:
 
-Consider donating -> 
+Consider donating -> addr1q8zcfzrhkcdazlmxtfw77l3vfq5xmqmjx3nxj4vtwlsp2dqr55mdgpys5aml6mww9zyv0v98j2jmzjvgf583gwxnswrqcs920u :pray:
 
-Consider staking on the HouseOfCardanoStakePool -> ticker [HOCSP]
+Consider staking on the HouseOfCardanoStakePool -> ticker [HOCSP] :fox_face:
 
 ## How to play the Cardano-Millions lottery
 WORK IN PROGRESS
@@ -199,7 +199,7 @@ sudo -u postgres psql testnet
 \dt
 ```
 
-I ran this second synchronising command detached, in a tmux session. To fully synchronise the db to the node took approximately 08:51 **XXX NEED TO COMPLETE XXX**
+I ran this second synchronising command detached, in a tmux session. Fully synchronising the cardano-db-sync to the cardano-node took over 10 hours.
 
 Once up and running, there are a number of "ready made" queries that you can run, which can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/interesting-queries.md, and details on the various tables can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/schema.md
 
