@@ -1,6 +1,8 @@
 [![ADA](https://img.shields.io/badge/Cardano-ADA-informational)](https://github.com/House-of-Cardano/cardano-millions-testnet)
 [![Plutus](https://img.shields.io/badge/Cardano-Plutus-yellow)](https://github.com/House-of-Cardano/cardano-millions-testnet)
 [![License](https://img.shields.io/github/license/house-of-cardano/cardano-millions-testnet)](https://github.com/House-of-Cardano/cardano-millions-testnet)
+[![release](https://img.shields.io/badge/release-v0.0.1-9cf)](https://github.com/House-of-Cardano/cardano-millions-testnet)
+[![donate](https://img.shields.io/badge/Donate-addr1q8zcfzrhkcdazlmxtfw77l3vfq5xmqmjx3nxj4vtwlsp2dqr55mdgpys5aml6mww9zyv0v98j2jmzjvgf583gwxnswrqcs920u-success)](https://github.com/House-of-Cardano/cardano-millions-testnet)
 
 # cardano-millions-testnet
 Testing scripts for a cardano lottery. Powered by Plutus smart contracts on the Cardano blockchain (testnet)
@@ -172,7 +174,10 @@ Build the node by running the command `nix-build -A cardano-db-sync -o db-sync-n
 
 Once the build is complete, make a copy the file `config/mainnet-config.yaml` to `config/testnet-config.yaml` and edit the following line in this file:
 
+`NetworkName: testnet`
 `NodeConfigFile: ../../cardano-my-node/testnet-config.json`
+
+`NetworkName` will be mainnet by default. Change this to testnet.
 
 The `testnet-config.json` file is one of the files that are created when you build the cardano-node - so build and synchronise your cardano node (testnet) before setting up cardano-db-synch. The path for the `NodeConfigFile` is the path to the node config file, relative to the config file located in the `cardano-db-sync` folder. Once the file has been copied and modified, run:
 
