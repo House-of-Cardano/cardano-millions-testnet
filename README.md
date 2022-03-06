@@ -14,6 +14,10 @@ Testing scripts for a cardano lottery. Powered by Plutus smart contracts on the 
 ### [How to play the Cardano-Millions lottery](#how-to-play-the-cardano-millions-lottery-1)
 ### [How the Cardano-Millions lottery works](#how-the-cardano-millions-lottery-works-1)
 ### [Run the code](#run-the-code-1)
+- #### [Set-up a cardano-node](#set-up-a-cardano-node-1)
+- #### [Install and run a cardano-db-sync to query the blockchain](#install-and-run-a-cardano-db-sync-to-query-the-blockchain-1)
+- #### [Install nix](#install-nix-1)
+- #### [Install and run Cardano-Millions](#install-and-run-cardano-millions-1)
 ### [To Do](#to-do-1)
 <!-- &nbsp; -->
 ## Introduction
@@ -204,7 +208,7 @@ sudo -u postgres psql testnet
 \dt
 ```
 
-I ran this second synchronising command detached, in a tmux session. Fully synchronising the cardano-db-sync to the cardano-node took close to 20 hours.
+I ran this second synchronising command detached, in a tmux session. Full synchronisation between cardano-db-sync and the cardano-node took roughly 24 hours.
 
 Once up and running, there are a number of "ready made" queries that you can run, which can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/interesting-queries.md, and details on the various tables can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/schema.md
 
