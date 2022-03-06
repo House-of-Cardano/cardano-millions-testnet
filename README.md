@@ -199,7 +199,7 @@ sudo -u postgres psql testnet
 \dt
 ```
 
-I ran this second synchronising command detached, in a tmux session. Fully synchronising the cardano-db-sync to the cardano-node took over 10 hours.
+I ran this second synchronising command detached, in a tmux session. Fully synchronising the cardano-db-sync to the cardano-node took over 15 hours.
 
 Once up and running, there are a number of "ready made" queries that you can run, which can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/interesting-queries.md, and details on the various tables can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/schema.md
 
