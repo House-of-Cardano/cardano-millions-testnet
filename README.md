@@ -22,7 +22,7 @@ The game can be played from the [HouseOfCardano](https://house-of-cardano.io/car
 
 **10% of all money collected at each iteration of the lottery will go to charities that support children** 
 
-#Peace, #Love and #Cardano #forall :hearts:
+#Peace, #Love, #Cardano #forall :hearts:
 
 To set-up your own version of Cardano Millions, follow the instructions below. Please feel free to reach out to me for any remarks at [hoc@house-of-cardano.io](mailto:hoc@house-of-cardano.io) Happy coding :sunglasses:
 
@@ -199,14 +199,14 @@ sudo -u postgres psql testnet
 \dt
 ```
 
-I ran this second synchronising command detached, in a tmux session. Fully synchronising the cardano-db-sync to the cardano-node took over 15 hours.
+I ran this second synchronising command detached, in a tmux session. Fully synchronising the cardano-db-sync to the cardano-node took close to 20 hours.
 
 Once up and running, there are a number of "ready made" queries that you can run, which can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/interesting-queries.md, and details on the various tables can be found at https://github.com/input-output-hk/cardano-db-sync/blob/master/doc/schema.md
 
 I believe that it is also possible to use graphql or [Blockfrost](https://blockfrost.io) with cardano-db-synch, but I have not yet investigated this (info for using graphql with the Cardano blockchain can be found [here](https://github.com/AskBid/cardano-notes/wiki/cardano-db-sync%2C-cardano-node%2C-cardano-graph-ql)).
 
 ### Install nix
-WORK IN PROGRESS
+Follow the instructions [here](https://github.com/input-output-hk/plutus-apps#how-to-develop) in order to install nix for working with Plutus. Scroll down to the section "How to build the project’s artifacts" and follow the instructions for nix. It is very important to follow the [cache warning](https://github.com/input-output-hk/plutus-apps#cache-warning), as this will prevent you from downloading things that have already been done by IOHK and will save you a ton of time.
 
 ### Install and run Cardano-Millions
 &nbsp;
@@ -214,6 +214,6 @@ WORK IN PROGRESS
 
 ## To Do
 
+- [ ] Description on how to play the Cardano millions lotto
 - [ ] Description on how to install and run the cardano-millions repository
-- [ ] Description on how to install nix
-<!-- - :heavy_check_mark: Item Four -->
+- :heavy_check_mark: Description on how to install nix
