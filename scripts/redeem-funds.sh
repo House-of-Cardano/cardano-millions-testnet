@@ -4,7 +4,7 @@
 # 1:- utxo containing the funds locked at the scriptAddr
 # 2:- utxo for funding -> from bank
 
-echo "Building & submitting the transaction..."
+echo "Building & submitting the transaction to transfer funds to the cagnotte and transfer to charity..."
 
 cardano-cli transaction build \
 --alonzo-era \
@@ -15,7 +15,8 @@ cardano-cli transaction build \
 --tx-in-redeemer-file ./scripts/unit.json \
 --tx-in $2 \
 --tx-in-collateral $2 \
---tx-out "$cagnotte + 4000000" \
+--tx-out "$charity + $charityTransfer" \
+--tx-out "$cagnotte + $cagnotteTransfer" \
 --change-address $bank \
 --protocol-params-file ./blockchain/protocol.json \
 --out-file ./blockchain/test-asset.tx
