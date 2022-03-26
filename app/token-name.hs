@@ -1,10 +1,12 @@
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-}
+
 module Main
     ( main
     ) where
 
 import Data.String        (IsString (..))
 import System.Environment (getArgs)
-import Week06.Utils       (unsafeTokenNameToHex)
+import Validate.Utils     (unsafeTokenNameToHex)
 
 main :: IO ()
 main = do
