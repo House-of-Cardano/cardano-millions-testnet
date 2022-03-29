@@ -27,7 +27,8 @@ common project-config
                         -Wunused-packages
 
 library
-  exposed-modules:     Validate.Onchain                     
+  exposed-modules:     Validate.Onchain
+                     , Validate.Utils                     
   build-depends:       aeson
                      , base ^>=4.14.1.0
                      , base16-bytestring
@@ -52,6 +53,9 @@ library
                      , text
                      , serialise
                      , cardano-api
+                     , cardano-crypto-class
+                     , cardano-ledger-core
+                     , plutus-pab
   hs-source-dirs:      src
   default-language:    Haskell2010
   ghc-options:         -Wall -fobject-code -fno-ignore-interface-pragmas -fno-omit-interface-pragmas -fno-strictness -fno-spec-constr -fno-specialise
@@ -68,3 +72,10 @@ executable validate-payment-plutus
                       , plutus-ledger-api
                       , bytestring
                       , cardano-ledger-alonzo
+
+executable token-name
+  main-is: token-name.hs
+  hs-source-dirs:      app
+  ghc-options:         -Wall
+  build-depends:       base ^>= 4.14.1.0
+                     , house-of-cardano

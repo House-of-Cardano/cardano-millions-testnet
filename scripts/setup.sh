@@ -4,7 +4,7 @@ rm ./blockchain/*.raw ./blockchain/*.signed ./blockchain/*.addr ./blockchain/*.b
 
 # ------------ Set-up enrivonment variables -------------------------
 
-# Hash of Cardano-Millions-Token -> 43617264616e6f2d4d696c6c696f6e732d546f6b656e
+# Hash of Cardano-Millions-Token -> 43617264616e6f2d4d696c6c696f6e732d546f6b656e 
 
 echo "Preparing environment variables..."
 
